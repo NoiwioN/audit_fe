@@ -21,7 +21,7 @@ export default function Navigation () {
     ):(<nav>
         <Link href="/profile" className={styles.links}>Profil</Link>
         <Link href="/login" onClick={handleClick} className={styles.links}>Logout</Link>
-        <Link href="/login" onClick={handleClick} className={styles.links}>Users</Link>
+        <Link href="/users" onClick={handleClick} className={styles.links}>Users</Link>
         <Link href="/login" onClick={handleClick} className={styles.links}>Audiobücher</Link>
     </nav>)
 }
