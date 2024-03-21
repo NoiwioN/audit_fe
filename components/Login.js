@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useGlobalContext} from "@/store";
 import UsersAPI from "/lib/api/Users"
 import {useRouter} from "next/router";
+import {jwtDecode} from "jwt-decode";
 
 export default function Login() {
     const {login} = useGlobalContext();
@@ -20,10 +21,13 @@ export default function Login() {
         const handleLogin = async () => {
             setIsLoading(true)
             validateUser()
-            console.log("Benutzer: ")
-            console.log(JSON.stringify(user))
-            const session = await UsersAPI.AuthenticationAPI(user)
-            login(session)
+            const response = await UsersAPI.login(user)
+            const accessToken = response.accessToken
+            const decodedToken = jwtDecode(accessToken)
+            const tokenUser = decodedToken.sub
+            const users= await UsersAPI.getUserByUsername(tokenUser,accessToken)
+            const userForSession= users[0]
+            login({accessToken, userForSession})
             await router.push("/")
         }
         handleLogin().then(() => {
