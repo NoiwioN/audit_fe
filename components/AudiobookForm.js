@@ -53,36 +53,36 @@ export default function AudiobookForm({ editedAudiobook = null }) {
                 <div>
                     <label htmlFor="title">Titel</label>
                     <div>
-                        <input value={audiobook.titel}
+                        <input defaultValue={audiobook.titel}
                             type="text" name="title" id="title" placeholder="Title" onChange={handleChange} />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="length">Länge</label>
                     <div>
-                        <textarea value={audiobook.laenge}
-                            type="text" name="length" id="length" placeholder="Länge" onChange={handleChange} />
+                        <input defaultValue={audiobook.laenge}
+                            type="number" name="length" id="length" placeholder="Länge" onChange={handleChange} />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="author">Autor</label>
                     <div>
-                        <textarea value={audiobook.autor}
+                        <input defaultValue={audiobook.autor}
                             type="text" name="author" id="author" placeholder="Autor" onChange={handleChange} />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="genre">Genre</label>
                     <div>
-                        <textarea value={audiobook.genre_id}
-                            type="text" name="genre" id="genre" placeholder="Genre" onChange={handleChange} />
+                        <input defaultValue={audiobook.genre_id}
+                            type="number" name="genre" id="genre" placeholder="Genre" onChange={handleChange} />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="release_year">Erscheinungsjahr</label>
                     <div>
-                        <textarea value={audiobook.erscheinungsjahr}
-                            type="text" name="release_year" id="release_year" placeholder="Erscheinungsjahr" rows="1" onChange={handleChange} />
+                        <input defaultValue={audiobook.erscheinungsjahr}
+                            type="number" name="release_year" id="release_year" placeholder="Erscheinungsjahr" rows="1" onChange={handleChange} />
                     </div>
                 </div>
 
