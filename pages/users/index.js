@@ -1,12 +1,12 @@
 import UsersAPI from "@/lib/api/Users";
 import Users from "@/components/Users";
-import {useGlobalContext} from "@/store";
+import { useGlobalContext } from "@/store";
 
-export default function users({users}){
+export default function users({ users }) {
     return (
         <div>
             <h1>Users</h1>
-            {users.map(user =>{
+            {users.map(user => {
                 return <Users
                     name={user.vorname}
                     id={user.id}
@@ -19,9 +19,9 @@ export default function users({users}){
     )
 }
 
-export async function getStaticProps () {
-    const users= await UsersAPI.findAll()
+export async function getStaticProps() {
+    const users = await UsersAPI.findAll()
     return {
-        props: {users}, revalidate :10
+        props: { users }, revalidate: 10
     }
 }

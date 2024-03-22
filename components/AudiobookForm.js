@@ -21,23 +21,22 @@ export default function AudiobookForm() {
     const [audiobook, setAudiobook] = useState(defaultAudiobook)
     const [genres, setGenres] = useState(null)
 
-    const options= []
+    const options = []
     const defaultOption = options[0]
 
     useEffect(() => {
-        const getGenres= async ()=>{
-            const genres= await GenresAPI.read();
+        const getGenres = async () => {
+            const genres = await GenresAPI.read();
             setGenres(genres)
         }
         const getAudiobook = async () => {
             const audiobook = await AudiobooksAPI.read(router.query.id)
             setAudiobook(audiobook)
         }
-        if(router.query.id){
+        if (router.query.id) {
             getAudiobook()
-            getGenres().then(()=>)
-        }else{
-            getGenres().then(()=>{
+        } else {
+            getGenres().then(() => {
                 setAudiobook(defaultAudiobook)
             })
         }
