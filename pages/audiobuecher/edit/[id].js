@@ -1,13 +1,14 @@
-
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "@/store";
+import {useRouter} from "next/router";
+import React, {useEffect, useState} from "react";
+import {useGlobalContext} from "@/store";
 import AudiobooksAPI from "@/lib/api/Audiobooks";
 import AudiobookForm from "@/components/AudiobookForm"
+import GenresAPI from "@/lib/api/Genres";
+
 export default function editPage() {
 
     const router = useRouter();
-    const { loading } = useGlobalContext()
+    const {loading} = useGlobalContext()
     const id = router.query.id;
 
     const [audiobook, setAudiobook] = useState(null)
@@ -32,7 +33,7 @@ export default function editPage() {
         <div>
             <h1>Bearbeite das Audiobuch</h1>
 
-            <AudiobookForm editedAudiobook={audiobook} />
+            <AudiobookForm genres={genres} givenAudiobook={givenAudiobook}/>
         </div>
     );
 }
