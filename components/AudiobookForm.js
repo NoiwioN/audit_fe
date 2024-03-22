@@ -34,7 +34,7 @@ export default function AudiobookForm() {
         }
         if(router.query.id){
             getAudiobook()
-            getGenres().then(()=>)
+            getGenres().then(()=>options.push(genres))
         }else{
             getGenres().then(()=>{
                 setAudiobook(defaultAudiobook)
