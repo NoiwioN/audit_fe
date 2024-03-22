@@ -2,6 +2,7 @@ import AudiobooksAPI from "@/lib/api/Audiobooks";
 import { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import styles from "./[id].module.css"
 
 export default function DetailAudiobuecherPage({ audiobook }) {
     const { loading } = useGlobalContext()
@@ -20,9 +21,9 @@ export default function DetailAudiobuecherPage({ audiobook }) {
                 <p>Erscheinungsjahr: {audiobook.erscheinungsjahr}</p>
             </div>
             <div>
-                <Link href={`/`}>Zurück</Link>
-                <Link href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link>
-                <Link onClick={deleteAudiobook} href={`/`}>Löschen</Link>
+                <Link className={styles.link} href={`/`}>Zurück</Link>
+                <Link className={styles.link} href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link>
+                <Link className={styles.link} onClick={deleteAudiobook} href={`/`}>Löschen</Link>
 
             </div>
         </div>
