@@ -7,7 +7,7 @@ import { useEffect } from "react"
 import Dropdown from 'react-dropdown'
 import styles from "./AudiobookForm.module.css"
 
-export default function AudiobookForm({ editedAudiobook = null, genres }) {
+export default function AudiobookForm() {
 
     const defaultAudiobook = {
         titel: "",
@@ -17,17 +17,34 @@ export default function AudiobookForm({ editedAudiobook = null, genres }) {
         erscheinungsjahr: ""
     }
     const router = useRouter()
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [audiobook, setAudiobook] = useState(defaultAudiobook)
+    const [genres, setGenres] = useState(null)
 
-    const options = genres.map(genre => genre.name.toString())
+    const options= []
     const defaultOption = options[0]
 
     useEffect(() => {
-        if (editedAudiobook != null) {
-            setAudiobook(editedAudiobook)
+        const getGenres= async ()=>{
+            const genres= await GenresAPI.read();
+            setGenres(genres)
         }
-    }, [editedAudiobook])
+        const getAudiobook = async () => {
+            const audiobook = await AudiobooksAPI.read(router.query.id)
+            setAudiobook(audiobook)
+        }
+        if(router.query.id){
+            getAudiobook()
+            getGenres().then(()=>)
+        }else{
+            getGenres().then(()=>{
+                setAudiobook(defaultAudiobook)
+            })
+        }
+        setIsLoading(false)
+
+
+    }, [router])
 
     const handleChange = (e) => {// e = event
         const name = e.target.name
@@ -91,7 +108,7 @@ export default function AudiobookForm({ editedAudiobook = null, genres }) {
                     </div>
                 </div>
 
-                <button href={`/`} className={"button"}>Erstellen</button>
+                <button className={"button"}>Erstellen</button>
                 <Link href={`/`} >Zurück</Link>
             </form>
 
@@ -99,23 +116,3 @@ export default function AudiobookForm({ editedAudiobook = null, genres }) {
     )
 }
 
-export async function getStaticPaths() {
-    const audiobooks = await AudiobooksAPI.readAll()
-    const paths = audiobooks.map(audiobook => (
-        {
-            params: { id: audiobook.id.toString() }
-        })
-    )
-
-    return { paths, fallback: true }
-}
-
-export async function getStaticProps(context) {
-    const id = context.params.id
-    console.log(id)
-    const genres = await GenresAPI.readAll();
-    const audiobook = await AudiobooksAPI.read(id)
-    return {
-        props: { audiobook, genres }, revalidate: 10
-    }
-}
