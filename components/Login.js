@@ -1,12 +1,12 @@
-import {useState} from "react";
-import {useGlobalContext} from "@/store";
+import { useState } from "react";
+import { useGlobalContext } from "@/store";
 import UsersAPI from "/lib/api/Users"
-import {useRouter} from "next/router";
-import {jwtDecode} from "jwt-decode";
+import { useRouter } from "next/router";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
-    const {login} = useGlobalContext();
-    const [user, setUser] = useState({benutzername: "", passwort: ""})
+    const { login } = useGlobalContext();
+    const [user, setUser] = useState({ benutzername: "", passwort: "" })
     const [errors, setErrors] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter();
@@ -14,7 +14,7 @@ export default function Login() {
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setUser(prevState => ({...prevState, [name]: value}))
+        setUser(prevState => ({ ...prevState, [name]: value }))
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,9 +25,9 @@ export default function Login() {
             const accessToken = response.accessToken
             const decodedToken = jwtDecode(accessToken)
             const tokenUser = decodedToken.sub
-            const users= await UsersAPI.getUserByUsername(tokenUser,accessToken)
-            const userForSession= users[0]
-            login({accessToken, userForSession})
+            const users = await UsersAPI.getUserByUsername(tokenUser, accessToken)
+            const userForSession = users[0]
+            login({ accessToken, userForSession })
             await router.push("/")
         }
         handleLogin().then(() => {
@@ -45,12 +45,12 @@ export default function Login() {
                 <h2>Login</h2>
                 <div>
                     <input onChange={handleChange} type="text"
-                           name="benutzername" placeholder="Benutzername" value={user.benutzername}/>
+                        name="benutzername" placeholder="Benutzername" value={user.benutzername} />
                 </div>
 
                 <div>
                     <input onChange={handleChange} type="password"
-                           name="passwort" placeholder="Passwort" value={user.password}/>
+                        name="passwort" placeholder="Passwort" value={user.password} />
                 </div>
                 <button disabled={isLoading} onClick={handleSubmit}>
                     {isLoading ? "...Loading" : "Login"}

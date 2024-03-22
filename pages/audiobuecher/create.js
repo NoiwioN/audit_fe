@@ -1,6 +1,6 @@
 import AudiobookForm from "@/components/AudiobookForm"
 
-export default function create() {
+export default function createPage() {
 
     return (
         <div>

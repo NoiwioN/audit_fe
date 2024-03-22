@@ -13,7 +13,6 @@ export default function Home({ audiobooks }) {
   const { session } = useGlobalContext()
   return (
     <div>
-      <h1>Home Site</h1>
       <h1>Audiobücher:</h1>
       {
         audiobooks.map(audiobook => {
@@ -24,7 +23,7 @@ export default function Home({ audiobooks }) {
           )
         })
       }
-      <Link href={`/`}>Erstellen</Link>
+      <Link href={`/audiobuecher/create`}>Erstellen</Link>
     </div>
   )
 }

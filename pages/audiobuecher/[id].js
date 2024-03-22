@@ -3,7 +3,7 @@ import { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function DetailAudiobuecher({ audiobook }) {
+export default function DetailAudiobuecherPage({ audiobook }) {
     const { loading } = useGlobalContext()
     const router = useRouter();
 
@@ -16,8 +16,8 @@ export default function DetailAudiobuecher({ audiobook }) {
                 <h1>{audiobook.titel}</h1>
                 <p>Autor: {audiobook.autor}</p>
                 <p>Länge: {audiobook.laenge}</p>
-                <p>Erscheinungsjahr: {audiobook.erscheinungsjahr}</p>
                 <p>Genre: {audiobook.genre.name}</p>
+                <p>Erscheinungsjahr: {audiobook.erscheinungsjahr}</p>
             </div>
             <div>
                 <Link href={`/`}>Zurück</Link>

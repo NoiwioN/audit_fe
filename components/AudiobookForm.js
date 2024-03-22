@@ -3,8 +3,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useEffect } from "react"
+import Dropdown from 'react-dropdown'
 
-export default function AudiobookForm({ editedAudiobook = null }) {
+export default function AudiobookForm({ editedAudiobook = null, audiobooks }) {
 
     const defaultAudiobook = {
         titel: "",
@@ -16,6 +17,9 @@ export default function AudiobookForm({ editedAudiobook = null }) {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
     const [audiobook, setAudiobook] = useState(defaultAudiobook)
+
+    const options = audiobooks.map(audiobook => audiobook.genre_id.name)
+    const defaultOption = options[0]
 
     useEffect(() => {
         if (editedAudiobook != null) {
@@ -74,8 +78,7 @@ export default function AudiobookForm({ editedAudiobook = null }) {
                 <div>
                     <label htmlFor="genre">Genre</label>
                     <div>
-                        <input defaultValue={audiobook.genre_id}
-                            type="number" name="genre" id="genre" placeholder="Genre" onChange={handleChange} />
+                        <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Wähle ein Genre" />;
                     </div>
                 </div>
                 <div>
@@ -86,8 +89,8 @@ export default function AudiobookForm({ editedAudiobook = null }) {
                     </div>
                 </div>
 
-                <button href={`/`} className={"button"}>submit</button>
-                <Link href={`/`} >Back</Link>
+                <button href={`/`} className={"button"}>Erstellen</button>
+                <Link href={`/`} >Zurück</Link>
             </form>
 
         </div>
@@ -101,7 +104,7 @@ export async function getStaticPaths() {
             params: { id: audiobook.id.toString() }
         })
     )
-    return { paths, fallback: true }
+    return { paths, fallback: true, audiobooks }
 }
 
 export async function getStaticProps(context) {
