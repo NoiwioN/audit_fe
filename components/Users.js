@@ -13,10 +13,10 @@ export default function Users ({nachname, name, email, benutzername, id}) {
         <div>
             <h2>{benutzername}</h2>
             <p>{email}</p>
-            <p>{nachname} {nachname}</p>
+            <p>{nachname} {name}</p>
             <Link href={`users/${id}`}>Mehr Details</Link>
             {session&&(<Link href={`users/edit/${id}`}>Bearbeiten</Link>)}
-            {session&&(<button onClick={()=>{handleDelete().then(window.location.reload)}}>Bearbeiten</button>)}
+            {session&&(<button onClick={()=>{handleDelete().then(window.location.reload())}}>Löschen</button>)}
         </div>
     )
 }
