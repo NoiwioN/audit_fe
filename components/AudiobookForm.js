@@ -1,11 +1,12 @@
 import AudiobooksAPI from "@/lib/api/Audiobooks"
+import GenresAPI from "@/lib/api/Genres"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useEffect } from "react"
 import Dropdown from 'react-dropdown'
 
-export default function AudiobookForm({ editedAudiobook = null, audiobooks }) {
+export default function AudiobookForm({ editedAudiobook = null, genres }) {
 
     const defaultAudiobook = {
         titel: "",
@@ -18,7 +19,7 @@ export default function AudiobookForm({ editedAudiobook = null, audiobooks }) {
     const [isLoading, setIsLoading] = useState(false)
     const [audiobook, setAudiobook] = useState(defaultAudiobook)
 
-    const options = audiobooks.map(audiobook => audiobook.genre_id.name)
+    const options = genres.map(genre => genre.name.toString())
     const defaultOption = options[0]
 
     useEffect(() => {
@@ -78,7 +79,7 @@ export default function AudiobookForm({ editedAudiobook = null, audiobooks }) {
                 <div>
                     <label htmlFor="genre">Genre</label>
                     <div>
-                        <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Wähle ein Genre" />;
+                        <Dropdown options={options} value={defaultOption} placeholder="Wähle ein Genre" />;
                     </div>
                 </div>
                 <div>
@@ -104,14 +105,16 @@ export async function getStaticPaths() {
             params: { id: audiobook.id.toString() }
         })
     )
-    return { paths, fallback: true, audiobooks }
+
+    return { paths, fallback: true }
 }
 
 export async function getStaticProps(context) {
     const id = context.params.id
     console.log(id)
+    const genres = await GenresAPI.readAll();
     const audiobook = await AudiobooksAPI.read(id)
     return {
-        props: { audiobook }, revalidate: 10
+        props: { audiobook, genres }, revalidate: 10
     }
 }
