@@ -1,15 +1,16 @@
 import AudiobooksAPI from "@/lib/api/Audiobooks";
-import { useGlobalContext } from "@/store";
+import GlobalContextProvider, { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./[id].module.css"
 
 export default function DetailAudiobuecherPage({ audiobook }) {
-    const { loading } = useGlobalContext()
+    const { loading, session } = useGlobalContext()
     const router = useRouter();
 
     const deleteAudiobook = async () => {
-        await AudiobooksAPI.delete(audiobook)
+        console.log(audiobook.id)
+        await AudiobooksAPI.delete(audiobook, session.accessToken)
     }
     return !audiobook ? null : (
         <div>
