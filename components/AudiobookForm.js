@@ -1,10 +1,11 @@
 import AudiobooksAPI from "@/lib/api/Audiobooks"
 import GenresAPI from "@/lib/api/Genres"
 import Link from "next/link"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import { useEffect } from "react"
+import {useRouter} from "next/router"
+import {useEffect, useState} from "react"
+
 import Dropdown from 'react-dropdown'
+import genres from "@/lib/api/Genres";
 
 export default function AudiobookForm() {
 
@@ -18,28 +19,48 @@ export default function AudiobookForm() {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(true)
     const [audiobook, setAudiobook] = useState(defaultAudiobook)
-    const [genres, setGenres] = useState(null)
+    const [genres, setGenres] = useState()
 
-    const options= []
+    const options = []
     const defaultOption = options[0]
 
+    const fillOptions = () => {
+        if (!genres) return;
+        for (let g of genres) {
+            options.push(g.name)
+
+        }
+    }
+
+    const getGenres = async () => {
+        return await GenresAPI.readAll();
+
+    }
+    const getAudiobook = async () => {
+        return await AudiobooksAPI.read(router.query.id)
+    }
+    const getData = async () => {
+        getAudiobook().then(a => {
+            setAudiobook(a)
+        })
+        getGenres().then(g => {
+            setGenres(g)
+        })
+    }
     useEffect(() => {
-        const getGenres= async ()=>{
-            const genres= await GenresAPI.read();
-            setGenres(genres)
-        }
-        const getAudiobook = async () => {
-            const audiobook = await AudiobooksAPI.read(router.query.id)
-            setAudiobook(audiobook)
-        }
-        if(router.query.id){
-            getAudiobook()
-            getGenres().then(()=>options.push(genres))
-        }else{
-            getGenres().then(()=>{
+        fillOptions();
+    }, [genres]);
+
+    useEffect(() => {
+
+        if (router.query.id) {
+            getData()
+        } else {
+            getGenres().then(() => {
                 setAudiobook(defaultAudiobook)
             })
         }
+        fillOptions()
         setIsLoading(false)
 
 
@@ -50,7 +71,7 @@ export default function AudiobookForm() {
         const text = e.target.value
         setAudiobook({
             ...audiobook,
-            ...{ [name]: text }
+            ...{[name]: text}
         })
     }
     const handleSubmit = async (e) => {
@@ -70,45 +91,46 @@ export default function AudiobookForm() {
 
     }
     return (
-        <div >
+        <div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="title">Titel</label>
                     <div>
                         <input defaultValue={audiobook.titel}
-                            type="text" name="title" id="title" placeholder="Title" onChange={handleChange} />
+                               type="text" name="title" id="title" placeholder="Title" onChange={handleChange}/>
                     </div>
                 </div>
                 <div>
                     <label htmlFor="length">Länge</label>
                     <div>
                         <input defaultValue={audiobook.laenge}
-                            type="number" name="length" id="length" placeholder="Länge" onChange={handleChange} />
+                               type="number" name="length" id="length" placeholder="Länge" onChange={handleChange}/>
                     </div>
                 </div>
                 <div>
                     <label htmlFor="author">Autor</label>
                     <div>
                         <input defaultValue={audiobook.autor}
-                            type="text" name="author" id="author" placeholder="Autor" onChange={handleChange} />
+                               type="text" name="author" id="author" placeholder="Autor" onChange={handleChange}/>
                     </div>
                 </div>
                 <div>
                     <label htmlFor="genre">Genre</label>
                     <div>
-                        <Dropdown options={options} value={defaultOption} placeholder="Wähle ein Genre" />;
+                        <Dropdown options={options} value={defaultOption} placeholder="Wähle ein Genre"/>;
                     </div>
                 </div>
                 <div>
                     <label htmlFor="release_year">Erscheinungsjahr</label>
                     <div>
                         <input defaultValue={audiobook.erscheinungsjahr}
-                            type="number" name="release_year" id="release_year" placeholder="Erscheinungsjahr" rows="1" onChange={handleChange} />
+                               type="number" name="release_year" id="release_year" placeholder="Erscheinungsjahr"
+                               rows="1" onChange={handleChange}/>
                     </div>
                 </div>
 
                 <button className={"button"}>Erstellen</button>
-                <Link href={`/`} >Zurück</Link>
+                <Link href={`/`}>Zurück</Link>
             </form>
 
         </div>

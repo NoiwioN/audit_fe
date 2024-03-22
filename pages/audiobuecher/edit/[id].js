@@ -33,7 +33,7 @@ export default function editPage() {
         <div>
             <h1>Bearbeite das Audiobuch</h1>
 
-            <AudiobookForm genres={genres} givenAudiobook={givenAudiobook}/>
+            <AudiobookForm/>
         </div>
     );
 }
