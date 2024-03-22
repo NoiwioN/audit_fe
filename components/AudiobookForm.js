@@ -21,8 +21,7 @@ export default function AudiobookForm() {
     const [isLoading, setIsLoading] = useState(true)
     const [audiobook, setAudiobook] = useState(defaultAudiobook)
     const [genres, setGenres] = useState()
-
-    const options = []
+    const [options, setOptions]=useState([])
     const defaultOption = options[0]
 
     const fillOptions = () => {
@@ -91,7 +90,7 @@ export default function AudiobookForm() {
         router.push(`/`)
 
     }
-    return (
+    return isLoading?<p>Loading page....</p>:(
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -118,6 +117,7 @@ export default function AudiobookForm() {
                 <div>
                     <label htmlFor="genre">Genre</label>
                     <div>
+                        <p></p>
                         <Dropdown options={options} value={defaultOption} placeholder="Wähle ein Genre"/>;
                     </div>
                 </div>
