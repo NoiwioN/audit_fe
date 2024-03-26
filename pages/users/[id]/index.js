@@ -1,8 +1,12 @@
 import UsersAPI from "@/lib/api/Users";
 import UserDetail from "@/components/UserDetail";
+import BorrowByUser from "@/components/BorrowByUser";
 
 export default function index({user}){
- return <UserDetail user={user}/>
+ return<div>
+     <UserDetail user={user}/>
+     <BorrowByUser userId={user.id}></BorrowByUser>
+ </div>
 }
 export async function getStaticProps (context) {
  const user= await UsersAPI.findById(context.params.id)
