@@ -4,7 +4,7 @@ import UsersAPI from "/lib/api/Users"
 import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
 import styles from "./Login.module.css"
-
+let userobject;
 export default function Login() {
     const { login } = useGlobalContext();
     const [user, setUser] = useState({ benutzername: "", passwort: "" })
@@ -28,6 +28,7 @@ export default function Login() {
             const tokenUser = decodedToken.sub
             const users = await UsersAPI.getUserByUsername(tokenUser, accessToken)
             const userForSession = users[0]
+            userobject = user;
             login({ accessToken, userForSession })
             await router.push("/")
         }
@@ -59,5 +60,7 @@ export default function Login() {
             </form>
         </div>
     )
-
+}
+export function getUserObject() {
+    return userobject;
 }

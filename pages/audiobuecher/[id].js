@@ -10,7 +10,6 @@ export default function DetailAudiobuecherPage({ audiobook }) {
     const router = useRouter();
 
     const deleteAudiobook = async () => {
-        console.log(`session${session.accessToken}`)
         await AudiobooksAPI.delete(audiobook.id, session.accessToken)
     }
     return !audiobook ? null : (
