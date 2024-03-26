@@ -1,12 +1,12 @@
-import {useGlobalContext} from "@/store";
+import { useGlobalContext } from "@/store";
 import Link from "next/link";
 import UsersAPI from "@/lib/api/Users";
 
-export default function Users ({nachname, name, email, benutzername, id}) {
+export default function Users({ nachname, name, email, benutzername, id }) {
 
-    const {session} = useGlobalContext();
-    const handleDelete = async ()=>{
-        await UsersAPI.delete(id,session.accessToken);
+    const { session } = useGlobalContext();
+    const handleDelete = async () => {
+        await UsersAPI.delete(id, session.accessToken);
     }
 
     return (
@@ -15,8 +15,8 @@ export default function Users ({nachname, name, email, benutzername, id}) {
             <p>{email}</p>
             <p>{nachname} {name}</p>
             <Link href={`users/${id}`}>Mehr Details</Link>
-            {session&&(<Link href={`users/edit/${id}`}>Bearbeiten</Link>)}
-            {session&&(<button onClick={()=>{handleDelete().then(window.location.reload())}}>Löschen</button>)}
+            {session && (<Link href={`users/edit/${id}`}>Bearbeiten</Link>)}
+            {session && (<button onClick={() => { handleDelete().then(window.location.reload()) }}>Löschen</button>)}
         </div>
     )
 }

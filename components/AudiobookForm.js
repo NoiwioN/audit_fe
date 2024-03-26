@@ -148,7 +148,7 @@ export default function AudiobookForm() {
                     </div>
                 </div>
 
-                <button className={styles.link} >Erstellen</button>
+                <Link className={styles.link} href={`/`}>Erstellen</Link>
                 <Link className={styles.link} href={`/`}>Zurück</Link>
             </form>
 
