@@ -5,7 +5,8 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 import Dropdown from 'react-dropdown'
-import styles from "./AudiobookForm.module.css"
+import styles from "@/styles/Home.module.css";
+import style from "./AudiobookForm.module.css"
 import genres from "@/lib/api/Genres";
 import { useGlobalContext } from "@/store"
 
@@ -64,13 +65,10 @@ export default function AudiobookForm() {
             if (name === "laenge" || name === "erscheinungsjahr") {
                 text = parseInt(text)
             }
-            console.log(typeof text)
         } else {
 
             text = { id: parseInt(e.value), name: e.label }
-            console.log(typeof text)
             name = "genre"
-            console.log(text)
         }
         setAudiobook({
             ...audiobook,
@@ -83,9 +81,9 @@ export default function AudiobookForm() {
         setIsLoading(true)
 
         if (audiobook.id) {
-            AudiobooksAPI.update(audiobook, session.accessToken).then(() => { setIsLoading(false) })
+            await AudiobooksAPI.update(audiobook, session.accessToken).then(() => { setIsLoading(false) })
         } else {
-            AudiobooksAPI.create(audiobook, session.accessToken).then(() => { setIsLoading(false) })
+            await AudiobooksAPI.create(audiobook, session.accessToken).then(() => { setIsLoading(false) })
         }
         setIsLoading(false)
         router.push(`/`)
@@ -93,7 +91,6 @@ export default function AudiobookForm() {
     }
     useEffect(() => {
         fillOptions();
-        console.log(`genres${genres}`)
     }, [genres]);
 
     useEffect(() => {
@@ -150,7 +147,7 @@ export default function AudiobookForm() {
                 </div>
 
                 <Link className={styles.link} href={`/`}>Erstellen</Link>
-                <Link className={styles.link} href={`/`}>Zurück</Link>
+                <Link className={style.link} href={`/`}>Zurück</Link>
             </form>
 
         </div>

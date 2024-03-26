@@ -3,6 +3,7 @@ import { useGlobalContext } from "@/store";
 import UsersAPI from "/lib/api/Users"
 import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
+import styles from "./Login.module.css"
 
 export default function Login() {
     const { login } = useGlobalContext();
@@ -52,7 +53,7 @@ export default function Login() {
                     <input onChange={handleChange} type="password"
                         name="passwort" placeholder="Passwort" value={user.password} />
                 </div>
-                <button disabled={isLoading} onClick={handleSubmit}>
+                <button className={styles.link} disabled={isLoading} onClick={handleSubmit}>
                     {isLoading ? "...Loading" : "Login"}
                 </button>
             </form>

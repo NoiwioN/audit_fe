@@ -2,6 +2,7 @@ import { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import UsersAPI from "@/lib/api/Users";
+import styles from "./UserForm.module.css";
 
 export default function UserForm() {
     const { session } = useGlobalContext();
@@ -84,7 +85,7 @@ export default function UserForm() {
                         onChange={handleChange} />
                 </div>
             </div>
-            <button className={"button"} onClick={handleSubmit}>Erstellen</button>
+            <button className={styles.link} onClick={handleSubmit}>Erstellen</button>
         </form>
     </div>) : <p>Request is being loaded</p>
 

@@ -12,8 +12,8 @@ export default function Home({ audiobooks }) {
   const { session } = useGlobalContext()
   return (
     <div>
-      <h1>Audiobücher:</h1>
-      <Link href={`/audiobuecher/create`}>Erstellen</Link>
+      <h1>Audiobücher</h1>
+      <Link className={styles.link} href={`/audiobuecher/create`}>Erstellen</Link>
       {
         audiobooks.map(audiobook => {
           return (
