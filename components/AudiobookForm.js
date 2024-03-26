@@ -93,6 +93,7 @@ export default function AudiobookForm() {
     }
     useEffect(() => {
         fillOptions();
+        console.log(`genres${genres}`)
     }, [genres]);
 
     useEffect(() => {
