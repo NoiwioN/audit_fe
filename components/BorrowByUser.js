@@ -1,7 +1,8 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import AusleihenAPI from "@/lib/api/Ausleihen";
 
-export default function BorrowByUser({userId}) {
+export default function BorrowByUser({ userId }) {
+
     const [borrowsByUser, setBorrowsByUser] = useState()
     const [loading, setIsLoading] = useState(true)
 

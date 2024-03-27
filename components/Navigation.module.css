@@ -1,3 +1,5 @@
-.links + .links{
+.links {
     margin-left: 10px;
+    text-decoration: none;
+    color: #000;
 }

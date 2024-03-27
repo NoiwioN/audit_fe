@@ -1,5 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
+
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { useGlobalContext } from "@/store";
@@ -13,7 +12,8 @@ export default function Home({ audiobooks }) {
   const { session } = useGlobalContext()
   return (
     <div>
-      <h1>Audiobücher:</h1>
+      <h1>Audiobücher</h1>
+      <Link className={styles.link} href={`/audiobuecher/create`}>Erstellen</Link>
       {
         audiobooks.map(audiobook => {
           return (
@@ -23,7 +23,6 @@ export default function Home({ audiobooks }) {
           )
         })
       }
-      <Link href={`/audiobuecher/create`}>Erstellen</Link>
     </div>
   )
 }

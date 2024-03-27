@@ -3,7 +3,7 @@ import {useGlobalContext} from "@/store";
 import UsersAPI from "@/lib/api/Users";
 import {useRouter} from "next/router";
 
-export default function UserDetail({user}) {
+export default function UserDetail({ user }) {
     const {session} = useGlobalContext();
     const router = useRouter()
 

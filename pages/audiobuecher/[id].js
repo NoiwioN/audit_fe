@@ -2,14 +2,14 @@ import AudiobooksAPI from "@/lib/api/Audiobooks";
 import { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "./[id].module.css"
+import styles from "@/styles/Home.module.css";
 
 export default function DetailAudiobuecherPage({ audiobook }) {
-    const { loading } = useGlobalContext()
+    const { loading, session } = useGlobalContext()
     const router = useRouter();
 
     const deleteAudiobook = async () => {
-        await AudiobooksAPI.delete(audiobook)
+        await AudiobooksAPI.delete(audiobook.id, session.accessToken)
     }
     return !audiobook ? null : (
         <div>
@@ -23,7 +23,7 @@ export default function DetailAudiobuecherPage({ audiobook }) {
             <div>
                 <Link className={styles.link} href={`/`}>Zurück</Link>
                 <Link className={styles.link} href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link>
-                <Link className={styles.link} onClick={deleteAudiobook} href={`/`}>Löschen</Link>
+                <button className={styles.link} onClick={deleteAudiobook} >Löschen</button>
 
             </div>
         </div>

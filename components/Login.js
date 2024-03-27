@@ -3,7 +3,8 @@ import { useGlobalContext } from "@/store";
 import UsersAPI from "/lib/api/Users"
 import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
-
+import styles from "../styles/Home.module.css"
+let userobject;
 export default function Login() {
     const { login } = useGlobalContext();
     const [user, setUser] = useState({ benutzername: "", passwort: "" })
@@ -27,6 +28,7 @@ export default function Login() {
             const tokenUser = decodedToken.sub
             const users = await UsersAPI.getUserByUsername(tokenUser, accessToken)
             const userForSession = users[0]
+            userobject = user;
             login({ accessToken, userForSession })
             await router.push("/")
         }
@@ -52,11 +54,13 @@ export default function Login() {
                     <input onChange={handleChange} type="password"
                         name="passwort" placeholder="Passwort" value={user.password} />
                 </div>
-                <button disabled={isLoading} onClick={handleSubmit}>
+                <button className={styles.link} disabled={isLoading} onClick={handleSubmit}>
                     {isLoading ? "...Loading" : "Login"}
                 </button>
             </form>
         </div>
     )
-
+}
+export function getUserObject() {
+    return userobject;
 }

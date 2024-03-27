@@ -2,12 +2,13 @@ import UsersAPI from "@/lib/api/Users";
 import Users from "@/components/Users";
 import { useGlobalContext } from "@/store";
 import Link from "next/link";
+import styles from "@/styles/Home.module.css";
 
 export default function users({ users }) {
     return (
         <div>
             <h1>Users</h1>
-            <Link href={"/users/create"}>Create User</Link>
+            <Link className={styles.link} href={"/users/create"}>Erstellen</Link>
             {users.map(user => {
                 return <Users key={user.id}
                     name={user.vorname}

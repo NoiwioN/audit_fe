@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styles from "./Audiobook.module.css"
+import styles from "@/styles/Home.module.css";
 
 export default function Post(props) {
     return (
