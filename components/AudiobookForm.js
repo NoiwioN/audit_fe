@@ -98,9 +98,10 @@ export default function AudiobookForm() {
         if (router.query.id) {
             getData()
         } else {
-            getGenres().then(() => {
-                setAudiobook(defaultAudiobook)
+            getGenres().then((g) => {
+                setGenres(g)
             })
+            fillOptions()
         }
         fillOptions()
         setIsLoading(false)
@@ -109,7 +110,7 @@ export default function AudiobookForm() {
     }, [router])
     return isLoading ? <p>Loading page....</p> : (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div>
                     <label htmlFor="title">Titel</label>
                     <div>
@@ -146,7 +147,7 @@ export default function AudiobookForm() {
                     </div>
                 </div>
 
-                <Link className={styles.link} href={`/`}>Erstellen</Link>
+                <button className={styles.link} onClick={handleSubmit}>Erstellen</button>
                 <Link className={style.link} href={`/`}>Zurück</Link>
             </form>
 
