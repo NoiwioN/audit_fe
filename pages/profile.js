@@ -1,5 +1,4 @@
 import { getUserObject } from "../components/Login"
-import styles from "./profile.module.css"
 export default function profilePage() {
     const userobject = getUserObject()
 
@@ -8,7 +7,7 @@ export default function profilePage() {
         <div>
             <h1>Dein Profile</h1>
             <p>Username: {userobject.benutzername}</p>
-            <p className={styles.foot}>Passwort: {userobject.passwort}</p>
+            <p>Passwort: {userobject.passwort}</p>
         </div>
     )
 }

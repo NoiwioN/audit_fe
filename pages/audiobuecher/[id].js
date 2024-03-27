@@ -3,7 +3,6 @@ import { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "@/styles/Home.module.css";
-import style from "./[id].module.css"
 
 export default function DetailAudiobuecherPage({ audiobook }) {
     const { loading, session } = useGlobalContext()
@@ -24,7 +23,7 @@ export default function DetailAudiobuecherPage({ audiobook }) {
             <div>
                 <Link className={styles.link} href={`/`}>Zurück</Link>
                 <Link className={styles.link} href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link>
-                <button className={style.link} onClick={deleteAudiobook} >Löschen</button>
+                <button className={styles.link} onClick={deleteAudiobook} >Löschen</button>
 
             </div>
         </div>

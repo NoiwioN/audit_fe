@@ -3,7 +3,7 @@ import { useGlobalContext } from "@/store";
 import UsersAPI from "/lib/api/Users"
 import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
-import styles from "./Login.module.css"
+import styles from "../styles/Home.module.css"
 let userobject;
 export default function Login() {
     const { login } = useGlobalContext();

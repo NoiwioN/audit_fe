@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 
 import Dropdown from 'react-dropdown'
 import styles from "@/styles/Home.module.css";
-import style from "./AudiobookForm.module.css"
 import genres from "@/lib/api/Genres";
 import { useGlobalContext } from "@/store"
 
@@ -148,7 +147,7 @@ export default function AudiobookForm() {
                 </div>
 
                 <button className={styles.link} onClick={handleSubmit}>Erstellen</button>
-                <Link className={style.link} href={`/`}>Zurück</Link>
+                <Link className={styles.link} href={`/`}>Zurück</Link>
             </form>
 
         </div>

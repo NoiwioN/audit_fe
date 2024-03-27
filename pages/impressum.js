@@ -21,7 +21,7 @@ export default function impressumPage() {
             </div>
             <div className={styles.div}>
                 <p className={styles.big}>Icon</p>
-                <p>Generiert mit looka.vom</p>
+                <p>Generiert mit looka.com</p>
             </div>
         </div >
     )

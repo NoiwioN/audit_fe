@@ -2,7 +2,7 @@ import { useGlobalContext } from "@/store";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import UsersAPI from "@/lib/api/Users";
-import styles from "./UserForm.module.css";
+import styles from "../styles/Home.module.css"
 
 export default function UserForm() {
     const { session } = useGlobalContext();
