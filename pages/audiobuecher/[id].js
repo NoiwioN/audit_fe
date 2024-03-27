@@ -22,8 +22,12 @@ export default function DetailAudiobuecherPage({ audiobook }) {
             </div>
             <div>
                 <Link className={styles.link} href={`/`}>Zurück</Link>
-                <Link className={styles.link} href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link>
-                <button className={styles.link} onClick={deleteAudiobook} >Löschen</button>
+                {
+                    session ? <Link className={styles.link} href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link> : null
+                }
+                {
+                    session ? <button className={styles.link} onClick={deleteAudiobook} >Löschen</button> : null
+                }
 
             </div>
         </div>
@@ -42,7 +46,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const id = context.params.id
-    console.log(id)
     const audiobook = await AudiobooksAPI.read(id)
     return {
         props: { audiobook }, revalidate: 10

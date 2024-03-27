@@ -1,4 +1,4 @@
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { createContext, useContext, useEffect, useState } from "react"
 
 
@@ -6,8 +6,8 @@ const STORAGE_KEY = "session"
 
 const useSession = () => {
 
-    const[loading, setLoading] = useState(true)
-    const[session, setSession] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [session, setSession] = useState(null)
 
     const login = (_session) => {
         setSession(_session)
