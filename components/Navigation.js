@@ -16,7 +16,7 @@ export default function Navigation () {
     return !session?(
         <nav >
             <Link href="/login" className={styles.links}>Login</Link>
-            <Link href="/login" className={styles.links}>Sign-Up</Link>
+            <Link href="/signUp" className={styles.links}>Sign-Up</Link>
         </nav>
     ):(<nav>
         <Link href="/profile" className={styles.links}>Profil</Link>

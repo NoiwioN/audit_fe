@@ -37,7 +37,7 @@ export default function UserForm() {
         if (router.query.id) {
             await UsersAPI.update(user, router.query.id, session.accessToken).then(() => setLoading(false))
         } else {
-            await UsersAPI.create(user, session.accessToken).then(() => setLoading(false))
+            await UsersAPI.create(user).then(() => setLoading(false))
         }
         router.push("/users")
     }
