@@ -3,8 +3,16 @@ import Users from "@/components/Users";
 import { useGlobalContext } from "@/store";
 import Link from "next/link";
 import styles from "@/styles/Home.module.css";
+import {useEffect} from "react";
+import {useRouter} from "next/router";
 
 export default function users({ users }) {
+    const {session} = useGlobalContext();
+    const router = useRouter();
+    useEffect(() => {
+        if(session) return;
+        router.push("/login")
+    }, []);
     return (
         <div>
             <h1>Users</h1>

@@ -43,7 +43,7 @@ export default function Login() {
     }
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <h2>Login</h2>
                 <div>
                     <input onChange={handleChange} type="text"
