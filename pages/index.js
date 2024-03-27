@@ -13,7 +13,9 @@ export default function Home({ audiobooks }) {
   return (
     <div>
       <h1>Audiobücher</h1>
-      <Link className={styles.link} href={`/audiobuecher/create`}>Erstellen</Link>
+      {
+        session ? <Link className={styles.link} href={`/audiobuecher/create`}>Erstellen</Link> : null
+      }
       {
         audiobooks.map(audiobook => {
           return (

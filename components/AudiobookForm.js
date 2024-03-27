@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 
 import Dropdown from 'react-dropdown'
 import styles from "@/styles/Home.module.css";
-import genres from "@/lib/api/Genres";
 import { useGlobalContext } from "@/store"
 
 export default function AudiobookForm() {
@@ -145,9 +144,10 @@ export default function AudiobookForm() {
                             rows="1" onChange={handleChange} />
                     </div>
                 </div>
-
+                {
+                    router.query.id ? <Link className={styles.link} href={`/audiobuecher/${audiobook.id}`}>Zurück</Link> : <Link className={styles.link} href={`/`}>Zurück</Link>
+                }
                 <button className={styles.link} onClick={handleSubmit}>Erstellen</button>
-                <Link className={styles.link} href={`/`}>Zurück</Link>
             </form>
 
         </div>

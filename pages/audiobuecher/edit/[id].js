@@ -1,19 +1,21 @@
-import {useRouter} from "next/router";
-import React, {useEffect, useState} from "react";
-import {useGlobalContext} from "@/store";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "@/store";
 import AudiobooksAPI from "@/lib/api/Audiobooks";
 import AudiobookForm from "@/components/AudiobookForm"
-import GenresAPI from "@/lib/api/Genres";
 
 export default function editPage() {
 
     const router = useRouter();
-    const {loading} = useGlobalContext()
+    const { session, loading } = useGlobalContext()
     const id = router.query.id;
 
     const [audiobook, setAudiobook] = useState(null)
 
     useEffect(() => {
+        if (!session && !loading && router.isReady) {
+            router.push('/login');
+        }
 
         let isMounted = true;
         if (!router.isReady) return
@@ -26,14 +28,13 @@ export default function editPage() {
         loadAudiobook()
         return () => (isMounted = false)
 
-    }, [router, loading])
+    }, [session, router, loading])
 
 
     return (
         <div>
             <h1>Bearbeite das Audiobuch</h1>
-
-            <AudiobookForm/>
+            <AudiobookForm />
         </div>
     );
 }

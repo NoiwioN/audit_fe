@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import UsersAPI from "@/lib/api/Users";
 import styles from "../styles/Home.module.css"
+import Link from "next/link";
 
 export default function UserForm() {
     const { session } = useGlobalContext();
@@ -85,6 +86,9 @@ export default function UserForm() {
                         onChange={handleChange} />
                 </div>
             </div>
+            {
+                router.query.id ? <Link className={styles.link} href={`/users/${user.id}`}>Zurück</Link> : <Link className={styles.link} href={`/`}>Zurück</Link>
+            }
             <button className={styles.link} onClick={handleSubmit}>Erstellen</button>
         </form>
     </div>) : <p>Request is being loaded</p>

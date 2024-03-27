@@ -15,6 +15,7 @@ export default function Navigation() {
     }
     return !session ? (
         <nav >
+            <Link href="/" className={styles.links}>Audiobücher</Link>
             <Link href="/login" className={styles.links}>Login</Link>
             <Link href="/signUp" className={styles.links}>Sign-Up</Link>
         </nav>
