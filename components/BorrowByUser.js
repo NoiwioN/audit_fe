@@ -4,7 +4,7 @@ import styles from "./BorrowByUser.module.css";
 
 export default function BorrowByUser({ userId }) {
 
-    const [borrowsByUser, setBorrowsByUser] = useState()
+    const [borrowsByUser, setBorrowsByUser] = useState(null)
     const [loading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -15,30 +15,48 @@ export default function BorrowByUser({ userId }) {
         getBorrows().then(() => setIsLoading(false))
     }, []);
 
-    return loading ? <p>Ausleihen werden geladen</p> : (<div>
-        <table>
-            <tbody>
-                <tr className={styles.grid}>
-                    <th>Buch</th>
-                    <th>Autor</th>
-                    <th>Benutzer</th>
-                    <th>Ausleihe von</th>
-                    <th>Ausleihe Bis</th>
-                </tr>
-                {borrowsByUser.map(borrowByUser => {
-                    return (
-                        <tr className={styles.grid} key={borrowByUser.id}>
-                            {
-                                borrowByUser.audiobuch.titel ? <td>{borrowByUser.audiobuch.titel}</td> : <td>Keine Angabe</td>
-                            }
-                            <td>{borrowByUser.audiobuch.autor}</td>
-                            <td>{borrowByUser.user.benutzername}</td>
-                            <td>{borrowByUser.ausleihdatum}</td>
-                            <td>{borrowByUser.rueckgabedatum}</td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
-    </div>)
+    return loading ? <p>Ausleihen werden geladen</p> : (
+        <div>
+
+            <div className={styles.grid}>
+                <h3>Buch</h3>
+                <h3>Autor</h3>
+                <h3>Benutzer</h3>
+                <h3>Ausleihe von</h3>
+                <h3>Ausleihe Bis</h3>
+            </div>
+            {
+                borrowsByUser[0] ?
+                    borrowsByUser.map(borrowByUser => {
+                        return (
+                            <div className={styles.grid} key={borrowByUser.id}>
+                                {
+                                    borrowByUser.audiobuch.titel ? <p>{borrowByUser.audiobuch.titel}</p> : <p>Keine Angabe</p>
+                                }
+                                {
+                                    borrowByUser.audiobuch.autor ? <p>{borrowByUser.audiobuch.autor}</p> : <p>Keine Angabe</p>
+                                }
+                                {
+                                    borrowByUser.user.benutzername ? <p>{borrowByUser.user.benutzername}</p> : <p>Keine Angabe</p>
+                                }
+                                {
+                                    borrowByUser.ausleihdatum ? <p>{borrowByUser.ausleihdatum}</p> : <p>Keine Angabe</p>
+                                }
+                                {
+                                    borrowByUser.rueckgabedatum ? <p>{borrowByUser.rueckgabedatum}</p> : <p>Keine Angabe</p>
+                                }
+                            </div>
+                        )
+                    })
+                    :
+                    <div className={styles.grid}>
+                        <p>Keine Angabe</p>
+                        <p>Keine Angabe</p>
+                        <p>Keine Angabe</p>
+                        <p>Keine Angabe</p>
+                        <p>Keine Angabe</p>
+                    </div>
+            }
+
+        </div>)
 }
