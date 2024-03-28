@@ -1,10 +1,10 @@
 import AudiobookForm from "@/components/AudiobookForm"
-import { useGlobalContext } from "@/store";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import {useGlobalContext} from "@/store";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
 
 export default function createPage() {
-    const { session, loading } = useGlobalContext()
+    const {session, loading} = useGlobalContext()
     const router = useRouter();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function createPage() {
     return (
         <div>
             <h2>Erstelle ein neues Audiobuch</h2>
-            <AudiobookForm />
+            <AudiobookForm/>
         </div>
     )
 }

@@ -2,13 +2,11 @@ import Link from "next/link";
 import styles from "@/components/Navigation.module.css"
 import { useGlobalContext } from "@/store";
 import { useState } from "react";
-
 import { useRouter } from "next/router";
 
 export default function Navigation() {
     const router = useRouter();
-    const { session, logout, login } = useGlobalContext();
-    const [sessionState, setSessionState] = useState(session)
+    const { session, logout } = useGlobalContext();
     const handleClick = () => {
         logout();
         router.push("/login")
