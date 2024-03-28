@@ -1,4 +1,4 @@
-export default function UserDetail({ user }) {
+export default function UserDetail({user}) {
 
     return !user ? <p>User...</p> : (
         <div>

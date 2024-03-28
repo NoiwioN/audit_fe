@@ -7,7 +7,7 @@ export default function Post(props) {
             <h1>{props.titel}</h1>
             <p>Autor: {props.autor}</p>
             <Link className={styles.link} href={`audiobuecher/${props.id}`}>Mehr Details</Link>
-            <hr />
-        </div >
+            <hr/>
+        </div>
     )
 }

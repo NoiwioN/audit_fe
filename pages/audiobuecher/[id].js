@@ -1,11 +1,11 @@
 import AudiobooksAPI from "@/lib/api/Audiobooks";
-import { useGlobalContext } from "@/store";
-import { useRouter } from "next/router";
+import {useGlobalContext} from "@/store";
+import {useRouter} from "next/router";
 import Link from "next/link";
 import styles from "@/styles/Home.module.css";
 
-export default function DetailAudiobuecherPage({ audiobook }) {
-    const { loading, session } = useGlobalContext()
+export default function DetailAudiobuecherPage({audiobook}) {
+    const {session} = useGlobalContext()
     const router = useRouter();
 
     const deleteAudiobook = async () => {
@@ -24,10 +24,11 @@ export default function DetailAudiobuecherPage({ audiobook }) {
             <div>
                 <Link className={styles.link} href={`/`}>Zurück</Link>
                 {
-                    session ? <Link className={styles.link} href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link> : null
+                    session ? <Link className={styles.link}
+                                    href={`/audiobuecher/edit/${audiobook.id}`}>Bearbeiten</Link> : null
                 }
                 {
-                    session ? <button className={styles.link} onClick={deleteAudiobook} >Löschen</button> : null
+                    session ? <button className={styles.link} onClick={deleteAudiobook}>Löschen</button> : null
                 }
 
             </div>
@@ -39,16 +40,16 @@ export async function getStaticPaths() {
     const audiobooks = await AudiobooksAPI.readAll()
     const paths = audiobooks.map(audiobook => (
         {
-            params: { id: audiobook.id.toString() }
+            params: {id: audiobook.id.toString()}
         })
     )
-    return { paths, fallback: true }
+    return {paths, fallback: true}
 }
 
 export async function getStaticProps(context) {
     const id = context.params.id
     const audiobook = await AudiobooksAPI.read(id)
     return {
-        props: { audiobook }, revalidate: 10
+        props: {audiobook}, revalidate: 10
     }
 }

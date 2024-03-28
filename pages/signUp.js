@@ -1,5 +1,5 @@
 import UserForm from "@/components/UserForm";
 
-export default function signUp(){
+export default function signUp() {
     return <UserForm></UserForm>
 }

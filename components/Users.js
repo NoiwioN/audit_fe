@@ -1,11 +1,11 @@
-import { useGlobalContext } from "@/store";
+import {useGlobalContext} from "@/store";
 import Link from "next/link";
 import UsersAPI from "@/lib/api/Users";
 import styles from "@/styles/Home.module.css";
 
-export default function Users({ nachname, name, email, benutzername, id }) {
+export default function Users({nachname, name, email, benutzername, id}) {
 
-    const { session } = useGlobalContext();
+    const {session} = useGlobalContext();
 
     return (
         <div>

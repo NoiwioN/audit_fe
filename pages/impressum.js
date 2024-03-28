@@ -1,4 +1,5 @@
 import styles from "./impressum.module.css"
+
 export default function impressumPage() {
     return (
         <div>
@@ -23,6 +24,6 @@ export default function impressumPage() {
                 <p className={styles.big}>Icon</p>
                 <p>Generiert mit looka.com</p>
             </div>
-        </div >
+        </div>
     )
 }

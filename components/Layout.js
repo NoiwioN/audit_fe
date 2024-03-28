@@ -1,10 +1,11 @@
 import Header from "@/components/Header";
 import Link from "next/link";
 import styles from "./Layout.module.css"
-export default function Layout({ children }) {
+
+export default function Layout({children}) {
     return (
         <>
-            <Header />
+            <Header/>
             <main className={styles.main}>
                 <div>
                     {children}

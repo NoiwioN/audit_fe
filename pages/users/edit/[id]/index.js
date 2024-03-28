@@ -1,10 +1,10 @@
 import UserForm from "@/components/UserForm";
-import { useGlobalContext } from "@/store";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import {useGlobalContext} from "@/store";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
 
 export default function index() {
-    const { session, loading } = useGlobalContext()
+    const {session, loading} = useGlobalContext()
     const router = useRouter();
 
     useEffect(() => {

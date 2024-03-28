@@ -1,16 +1,17 @@
-import { useGlobalContext } from "@/store";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {useGlobalContext} from "@/store";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
 import UsersAPI from "@/lib/api/Users";
 import styles from "../styles/Home.module.css"
 import Link from "next/link";
 
 export default function UserForm() {
-    const { session } = useGlobalContext();
+    const {session} = useGlobalContext();
     const router = useRouter();
     const [isLoading, setLoading] = useState(true);
     const [user, setUser] = useState();
-    const emptyUser = { vorname: "", nachname: "", email: "", benutzername: "", passwort: "" }
+
+    const emptyUser = {vorname: "", nachname: "", email: "", benutzername: "", passwort: ""}
 
     useEffect(() => {
         const getUser = async () => {
@@ -27,7 +28,7 @@ export default function UserForm() {
     }, [router]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setUser((prevUser) => ({
             ...prevUser,
             [name]: value
@@ -50,44 +51,45 @@ export default function UserForm() {
                 <label htmlFor="Benutzername">Benutzername</label>
                 <div>
                     <input value={user.benutzername}
-                        type="text" name="benutzername" id="benutzername" placeholder="benutzername"
-                        onChange={handleChange} />
+                           type="text" name="benutzername" id="benutzername" placeholder="benutzername"
+                           onChange={handleChange}/>
                 </div>
             </div>
             <div>
                 <label htmlFor="Vorname">Vorname</label>
                 <div>
                     <input value={user.vorname}
-                        type="text" name="vorname" id="vorname" placeholder="vorname"
-                        onChange={handleChange} />
+                           type="text" name="vorname" id="vorname" placeholder="vorname"
+                           onChange={handleChange}/>
                 </div>
             </div>
             <div>
                 <label htmlFor="Nachname">Nachname</label>
                 <div>
                     <input value={user.nachname}
-                        type="text" name="nachname" id="nachname" placeholder="nachname"
-                        onChange={handleChange} />
+                           type="text" name="nachname" id="nachname" placeholder="nachname"
+                           onChange={handleChange}/>
                 </div>
             </div>
             <div>
                 <label htmlFor="E-Mail">E-Mail</label>
                 <div>
                     <input value={user.email}
-                        type="email" name="email" id="email" placeholder="email"
-                        onChange={handleChange} />
+                           type="email" name="email" id="email" placeholder="email"
+                           onChange={handleChange}/>
                 </div>
             </div>
             <div>
                 <label htmlFor="Passwort">Passwort</label>
                 <div>
                     <input value={user.passwort}
-                        type="password" name="passwort" id="passwort" placeholder="passwort"
-                        onChange={handleChange} />
+                           type="password" name="passwort" id="passwort" placeholder="passwort"
+                           onChange={handleChange}/>
                 </div>
             </div>
             {
-                router.query.id ? <Link className={styles.link} href={`/users/${user.id}`}>Zurück</Link> : <Link className={styles.link} href={`/`}>Zurück</Link>
+                router.query.id ? <Link className={styles.link} href={`/users/${user.id}`}>Zurück</Link> :
+                    <Link className={styles.link} href={`/`}>Zurück</Link>
             }
             <button className={styles.link} onClick={handleSubmit}>Erstellen</button>
         </form>
