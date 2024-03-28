@@ -1,7 +1,7 @@
 
 
-describe('Test 1', () => {
-  it('Login in succeeds', () => {
+describe('Test 2', () => {
+  it('Benutzer kann sich registrieren, mit den neuen Daten anmelden, der User wird auf Users angezeigt und ist löschbar. ', () => {
     cy.visit('http://localhost:3000/')
     cy.contains("Sign-Up").click()
     cy.url().should('include','/signUp')
