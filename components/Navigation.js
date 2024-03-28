@@ -46,6 +46,7 @@ export default function Navigation() {
             setDisplay("block")
             setVisibility("visible")
             setFontsize("30px")
+            console
         }
         else {
             setOpacity("1")
