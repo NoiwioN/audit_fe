@@ -5,7 +5,6 @@
     text-decoration: none;
     color: #333;
     text-align: center;
-    font-size: 17px;
     padding: 14px 40px 14px 16px;
     line-height: 80px;
 }
@@ -24,28 +23,14 @@
     position: fixed;
 }
 
-.bar1,
-.bar2,
-.bar3 {
+
+.bar {
     width: 35px;
     height: 5px;
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
 }
-
-.change .bar1 {
-    transform: translate(0, 11px) rotate(-45deg);
-}
-
-.change .bar2 {
-    opacity: 0;
-}
-
-.change .bar3 {
-    transform: translate(0, -11px) rotate(45deg);
-}
-
 
 .topnav {
     overflow: hidden;
@@ -60,7 +45,6 @@
 }
 
 .li {
-    display: inline-block;
     margin: 0;
     padding: 0;
 }
@@ -89,7 +73,7 @@
         display: block;
     }
 
-    .topnav.responsive .li {
+    /*.topnav.responsive .li {
         display: block;
         visibility: visible;
         color: #333;
@@ -98,6 +82,6 @@
     .topnav.responsive .links {
         visibility: visible;
         font-size: 30px;
-    }
+    }*/
 
 }
