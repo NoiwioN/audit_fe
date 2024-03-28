@@ -13,6 +13,7 @@ export default function Users({ nachname, name, email, benutzername, id }) {
             <p>{email}</p>
             <p>{nachname} {name}</p>
             <Link className={styles.link} href={`users/${id}`}>Mehr Details</Link>
+            <hr />
         </div>
     )
 }
