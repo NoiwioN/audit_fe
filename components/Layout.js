@@ -1,9 +1,10 @@
-import Header from "@/components/Header";
-import Link from "next/link";
+import Header from "@/components/Header"
+import Link from "next/link"
 import styles from "./Layout.module.css"
+
 export default function Layout({ children }) {
     return (
-        <>
+        <div className={styles.div}>
             <Header />
             <main className={styles.main}>
                 <div>
@@ -13,6 +14,6 @@ export default function Layout({ children }) {
             <footer className={styles.footer}>
                 <Link className={styles.link} href="/impressum">Impressum</Link>
             </footer>
-        </>
+        </div>
     )
-}
+} 
