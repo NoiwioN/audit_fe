@@ -8,6 +8,17 @@ import Dropdown from 'react-dropdown'
 import styles from "@/styles/Home.module.css";
 import {useGlobalContext} from "@/store"
 
+const defaultAudiobook = {
+    titel: "",
+    laenge: 0,
+    autor: "",
+    genre: {
+        id: 0,
+        name: ""
+    },
+    erscheinungsjahr: 0
+}
+
 export default function AudiobookForm() {
     const {session} = useGlobalContext();
     const router = useRouter()
@@ -16,16 +27,7 @@ export default function AudiobookForm() {
     const [genres, setGenres] = useState()
     const [options, setOptions] = useState([])
 
-    const defaultAudiobook = {
-        titel: "",
-        laenge: 0,
-        autor: "",
-        genre: {
-            id: 0,
-            name: ""
-        },
-        erscheinungsjahr: 0
-    }
+
     useEffect(() => {
         fillOptions();
     }, [genres]);
