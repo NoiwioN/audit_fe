@@ -7,7 +7,6 @@ import {useRouter} from "next/router";
 import styles from "@/styles/Home.module.css"
 
 export default function index({user}) {
-
     const {session} = useGlobalContext();
     const router = useRouter()
 
@@ -36,6 +35,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
     const users = await UsersAPI.findAll();
+    //Klammern wegen implizitem return
     const paths = users.map((user) => (
         {
             params: {id: user.id.toString()}

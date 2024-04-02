@@ -31,7 +31,6 @@ export default function CustomNotFound() {
                 <h1 className={styles.h1}>"You may not have found what you wanted,<br/> but you found what you needed"
                 </h1>
             </div>
-
         </>
 
     )
